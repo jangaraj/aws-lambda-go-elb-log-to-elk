@@ -235,6 +235,7 @@ func handle(evt json.RawMessage, ctx *runtime.Context) (interface{}, error) {
             // create a new scanner and read the file line by line
             num := 1
             scanner := bufio.NewScanner(result.Body)
+            defer result.Body.Close()
             for scanner.Scan() {
                 if debug {
                     log.Printf("Log line %d: %s", num, scanner.Text())
